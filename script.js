@@ -1,20 +1,43 @@
-const numberOfMovies = +prompt("Movies count", "");
+"use strict"
+
+const moviesCnt = +prompt("Movies count", "");
 
 const personalMovieDb = {
-    count: numberOfMovies,
+    count: moviesCnt,
     movies: {},
     actors: {},
     genres: [],
     private: false
 };
 
-const movie1 = prompt("Movie name", "");
-const rating1 = prompt("Movie rating", "");
+for (let i = 0; i < moviesCnt; i ++) {
 
-const movie2 = prompt("Movie name", "");
-const rating2 = prompt("Movie rating", "");
+    let movieName = "";
+    let movieRating = "";
 
-personalMovieDb.movies[movie1] = rating1;
-personalMovieDb.movies[movie2] = rating2;
+    // do {
+    //     movieName = prompt("Movie name", "");
+    // } while (movieName == null || movieName == "" || movieName.length > 50);
+
+    while (movieName == null || movieName == "" || movieName.length > 50) {
+        movieName = prompt("Movie name", "");
+    }
+    
+    while (movieRating == null || movieRating == "") {
+        movieRating = +prompt("Movie rating", "");
+    } 
+
+    personalMovieDb.movies[movieName] = movieRating;
+}
+
+if (personalMovieDb.count < 10) {
+    alert("Too few movies watched");
+} else if (personalMovieDb.count <= 30) {
+    alert("Classical watcher");
+} else if (personalMovieDb.count > 30) {
+    alert("Movie fan");
+} else {
+    alert("Error occured");
+}
 
 console.log({ personalMovieDb });
